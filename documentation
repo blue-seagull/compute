@@ -1,0 +1,10 @@
+packets used in general:
+    flask flask-cors
+
+Blue Environment (benv)
+activation sh command   % source benv/bin/activate
+
+sshEntry_auth.py
+*This code if for the remote machine to authenticate Bodega ID, if its 
+*correct the user will be granted SSH access
+

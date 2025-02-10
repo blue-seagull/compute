@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .sign-in-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .sign-in-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, <span id="user-name">User</span>!</h1>
+        <button class="sign-in-button" onclick="location.href='/Users/fernandocarrillo/blue42/signIn.html'">Sign In</button>
+    </header>
+    
+    <section class="dashboard">
+        <div class="card">
+            <h2>Historic Compute Usage</h2>
+            <canvas id="computeUsageChart"></canvas>
+        </div>
+        
+        <div class="card">
+            <h2>Database Visualization</h2>
+            <div id="databaseVisualization">Database visualization will be displayed here.</div>
+        </div>
+        
+        <div class="card">
+            <h2>Billing Information</h2>
+            <p>Total Usage: <span id="billing-total">$0.00</span></p>
+            <p>Next Payment Date: <span id="billing-date">N/A</span></p>
+        </div>
+    </section>
+    
+    <script>
+        async function fetchUserData() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/user');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('user-name').textContent = data.name;
+                    document.getElementById('billing-total').textContent = `$${data.billing_total}`;
+                    document.getElementById('billing-date').textContent = data.billing_date;
+                } else {
+                    console.error("Failed to fetch user data", data.error);
+                }
+            } catch (error) {
+                console.error("Error fetching user data", error);
+            }
+        }
+        
+        fetchUserData();
+
+        // Compute Usage Chart
+        const ctx = document.getElementById('computeUsageChart').getContext('2d');
+        const computeUsageChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Compute Hours Used',
+                    data: [20, 35, 30, 50, 40, 60], // Example data
+                    borderColor: 'blue',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
