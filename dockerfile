@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 ENV DEVIAN_FRONTEND=noninteractive
 
-RUN apt updata && apt install -y \
+RUN apt update && apt install -y \
     openssh-server \
     sudo \
     curl \
