@@ -1,0 +1,32 @@
+psql	                            Start PostgreSQL interactive shell
+psql -U postgres	                Connect as the postgres superuser
+psql -U username -d database_name	Connect to a specific database
+\q	                                Exit PostgreSQL shell
+\h	                                Show SQL command help
+\?	                                Show psql command help
+\conninfo	                        Show database connection info
+\1                                  List databases
+\c my_database                      Connect to a database
+\du                                 List Users/Roles
+\dt                                 List tables
+\d users                            Describe a table (view structure)
+
+
+##  Create and Delete Databases ##
+CREATE DATABASE my_database;
+DROP DATABASE my_database;
+
+##   Drop a database only if it exists:    ##
+DROP DATABASE IF EXISTS my_database;
+
+##  Create a User   ##
+CREATE USER my_user WITH PASSWORD 'mypassword';
+
+##  Grant Privileges    ##
+GRANT ALL PRIVILEGES ON DATABASE my_database TO my_user;
+
+##  Assign a User as a Superuser    ##
+ALTER USER my_user WITH SUPERUSER;
+
+##  Delete a User   ##
+DROP USER my_user;

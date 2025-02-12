@@ -1,0 +1,88 @@
+git config --global user.name "Your Name"      # Set your Git username
+git config --global user.email "your@email.com" # Set your Git email
+git config --global core.editor "vim"          # Set default Git editor
+git config --global -l                         # List all global Git configurations
+git config --list                              # View all Git settings
+git config --global init.defaultBranch main    # Set default branch name to "main"
+
+git init                           # Initialize a new Git repository
+git clone <repo_url>               # Clone a repository
+git status                         # Check the status of files in the repo
+git add <file>                     # Add a specific file to staging
+git add .                          # Add all files to staging
+git commit -m "Commit message"     # Commit changes with a message
+git commit -am "Commit message"    # Add & commit in one command (skips untracked files)
+git log                            # View commit history
+git log --oneline --graph --all    # View a compact version of commit history
+git diff                           # Show unstaged changes
+git diff --staged                  # Show staged changes
+git blame <file>                   # Show who made each line change
+
+git branch                         # List all local branches
+git branch -a                       # List all local & remote branches
+git branch <branch-name>            # Create a new branch
+git checkout <branch-name>          # Switch to an existing branch
+git checkout -b <branch-name>       # Create and switch to a new branch
+git switch <branch-name>            # Newer way to switch branches
+git switch -c <branch-name>         # Create and switch to a new branch
+git merge <branch-name>             # Merge another branch into the current one
+git branch -d <branch-name>         # Delete a local branch
+git push origin --delete <branch>   # Delete a remote branch
+
+git remote -v                      # Show remote repositories
+git remote add origin <url>         # Add a new remote repository
+git remote set-url origin <url>     # Change the remote repository URL
+git fetch                           # Fetch changes from the remote (without merging)
+git pull                            # Fetch and merge latest changes from remote
+git pull origin <branch>            # Pull changes from a specific branch
+git push origin <branch>            # Push local changes to remote
+git push -u origin <branch>         # Push and set tracking branch
+git push --force                    # Force push changes (be careful!)
+
+git restore <file>                  # Discard changes in working directory
+git checkout -- <file>               # Old way to discard changes
+git reset <file>                     # Unstage a file but keep changes
+git reset --hard                     # Remove all local changes (DANGER!)
+git reset --soft HEAD~1              # Undo last commit but keep changes staged
+git revert <commit-hash>             # Create a new commit that undoes a specific commit
+git stash                            # Temporarily save uncommitted changes
+git stash pop                        # Restore last stashed changes
+git stash list                       # Show list of stashed changes
+git stash drop                       # Remove last stash
+
+git tag                             # List all tags
+git tag <tag-name>                  # Create a new tag
+git tag -a <tag-name> -m "Message"  # Create an annotated tag
+git push origin <tag-name>          # Push a specific tag to remote
+git push --tags                     # Push all tags to remote
+git tag -d <tag-name>               # Delete a local tag
+git push origin --delete <tag-name> # Delete a remote tag
+
+git submodule add <repo_url> <path>  # Add a Git submodule
+git submodule update --init --recursive  # Clone and initialize all submodules
+git submodule foreach git pull origin main  # Update all submodules
+
+git reflog                           # View history of HEAD changes
+git bisect start                     # Start binary search for a bug
+git bisect bad                       # Mark current commit as bad
+git bisect good <commit-hash>        # Mark commit as good
+git bisect reset                     # End bisect session
+git cherry-pick <commit-hash>        # Apply changes from a specific commit
+git worktree add <path> <branch>     # Work with multiple branches in one repo
+
+git push --set-upstream origin main  # Set upstream tracking branch
+git pull --rebase                    # Pull latest changes without extra merge commits
+git commit --amend -m "New message"  # Edit last commit message
+git rebase -i HEAD~3                 # Interactively rebase last 3 commits
+git clean -df                        # Remove untracked files & directories (DANGER!)
+
+git fork                             # Fork a repository (GitHub only)
+git remote add upstream <repo-url>   # Add original repo as upstream
+git fetch upstream                   # Get latest updates from upstream
+git merge upstream/main               # Merge upstream changes
+git pull-request                      # Create a pull request (GitHub CLI)
+
+git alias.st "status -s"              # Short status command
+git alias.co "checkout"               # Alias for checkout
+git alias.cm "commit -m"              # Shortcut for commit
+git alias.lg "log --oneline --graph --decorate --all"
