@@ -40,7 +40,6 @@ def execute_query(query, params=(), fetchone=False, fetchall=False, commit=False
         cursor.execute(query, params)
         if commit:
             conn.commit()
-
         if fetchone:
             return cursor.fetchone()
         elif fetchall:
